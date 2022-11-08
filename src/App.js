@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const CLIENT_ID = "";
@@ -8,6 +9,8 @@ function App() {
   const RESPONSE_TYPE = "token";
 
   const [token, setToken] = useState("");
+  const [searchKey, setSearchKey] = useState("");
+  const [artists, setArtists] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;

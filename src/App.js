@@ -1,9 +1,11 @@
 import "./App.css";
+import React, { Component } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Container from "@mui/material/Container";
 
 function App() {
-  const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
+  const CLIENT_ID = "";
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
@@ -65,29 +67,34 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Hello Beyond MD!</h1>
-        {!token ? (
-          <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-          >
-            Login to Spotify
-          </a>
-        ) : (
-          <button onClick={logout}>Logout</button>
-        )}
+      <Container>
+        <header className="App-header">
+          <h1>Hello Beyond MD!</h1>
+          {!token ? (
+            <a
+              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+            >
+              Login to Spotify
+            </a>
+          ) : (
+            <button onClick={logout}>Logout</button>
+          )}
 
-        {token ? (
-          <form onSubmit={searchArtists}>
-            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
-            <button type={"submit"}>Search</button>
-          </form>
-        ) : (
-          <h2>Please login</h2>
-        )}
+          {token ? (
+            <form onSubmit={searchArtists}>
+              <input
+                type="text"
+                onChange={(e) => setSearchKey(e.target.value)}
+              />
+              <button type={"submit"}>Search</button>
+            </form>
+          ) : (
+            <h2>Please login</h2>
+          )}
 
-        {renderArtists()}
-      </header>
+          {renderArtists()}
+        </header>
+      </Container>
     </div>
   );
 }

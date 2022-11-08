@@ -5,7 +5,7 @@ import axios from "axios";
 import Container from "@mui/material/Container";
 
 function App() {
-  const CLIENT_ID = "";
+  const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";

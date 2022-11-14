@@ -1,8 +1,10 @@
 import "./App.css";
-import React, { Component } from "react";
 import { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
-import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Resume from "./compononents/Resume";
+import SearchAppBar from "./compononents/AppBar";
 
 function App() {
   const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
@@ -67,34 +69,35 @@ function App() {
 
   return (
     <div className="App">
-      <Container>
-        <header className="App-header">
-          <h1>Hello Beyond MD!</h1>
-          {!token ? (
-            <a
-              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-            >
-              Login to Spotify
-            </a>
-          ) : (
-            <button onClick={logout}>Logout</button>
-          )}
+      <header className="App-header">
+        <h1>Hello Beyond MD!</h1>
+        <SearchAppBar />
+        <Resume />
+        {!token ? (
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          >
+            Login to Spotify
+          </a>
+        ) : (
+          <Button variant="outlined" size="small" onClick={logout}>
+            Logout
+          </Button>
+        )}
 
-          {token ? (
-            <form onSubmit={searchArtists}>
-              <input
-                type="text"
-                onChange={(e) => setSearchKey(e.target.value)}
-              />
-              <button type={"submit"}>Search</button>
-            </form>
-          ) : (
-            <h2>Please login</h2>
-          )}
+        {token ? (
+          <form onSubmit={searchArtists}>
+            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
+            <Button variant="outlined" size="small" type={"submit"}>
+              Search
+            </Button>
+          </form>
+        ) : (
+          <h2>Please login</h2>
+        )}
 
-          {renderArtists()}
-        </header>
-      </Container>
+        {renderArtists()}
+      </header>
     </div>
   );
 }

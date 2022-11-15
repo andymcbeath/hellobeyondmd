@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import Resume from "./compononents/Resume";
 import SearchAppBar from "./compononents/AppBar";
+import Resume from "./compononents/Resume";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 
 function App() {
   const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
@@ -67,37 +71,59 @@ function App() {
     ));
   };
 
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello Beyond MD!</h1>
-        <SearchAppBar />
-        <Resume />
-        {!token ? (
-          <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-          >
-            Login to Spotify
-          </a>
-        ) : (
-          <Button variant="outlined" size="small" onClick={logout}>
-            Logout
-          </Button>
-        )}
+    <div>
+      <Box sx={{ width: "100%" }}>
+        <Stack spacing={2}>
+          <Item>
+            <SearchAppBar />
+          </Item>
+          <Item>
+            <Resume />
+          </Item>
+          <Item>
+            <div className="App">
+              <header className="App-header">
+                <h1>Hello Beyond MD!</h1>
+                {!token ? (
+                  <a
+                    href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+                  >
+                    Login to Spotify
+                  </a>
+                ) : (
+                  <Button variant="outlined" size="small" onClick={logout}>
+                    Logout
+                  </Button>
+                )}
 
-        {token ? (
-          <form onSubmit={searchArtists}>
-            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
-            <Button variant="outlined" size="small" type={"submit"}>
-              Search
-            </Button>
-          </form>
-        ) : (
-          <h2>Please login</h2>
-        )}
-
-        {renderArtists()}
-      </header>
+                {token ? (
+                  <form onSubmit={searchArtists}>
+                    <input
+                      type="text"
+                      onChange={(e) => setSearchKey(e.target.value)}
+                    />
+                    <Button variant="outlined" size="small" type={"submit"}>
+                      Search
+                    </Button>
+                  </form>
+                ) : (
+                  <h2>Please login</h2>
+                )}
+                {renderArtists()}
+              </header>
+            </div>
+          </Item>
+        </Stack>
+      </Box>
     </div>
   );
 }

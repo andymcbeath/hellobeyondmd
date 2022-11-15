@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import ImageList from "@mui/material/ImageList";
+import { IconButton } from "@mui/material";
 
 function App() {
   const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
@@ -81,57 +82,83 @@ function App() {
   }));
 
   return (
-    <div>
-      <Box sx={{ height: "100%", width: "100%", overflowY: "scroll" }}>
-        <Stack spacing={2}>
-          <Item>
-            <SearchAppBar />
-          </Item>
-          <Item>
-            <Resume />
-          </Item>
-          <div className="App">
-            <header className="App-header">
-              <h1>Hello Beyond MD!</h1>
-              {!token ? (
-                <a
-                  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-                >
-                  Login to Spotify
-                </a>
-              ) : (
-                <Button variant="outlined" size="small" onClick={logout}>
-                  Logout
-                </Button>
-              )}
+    <Box
+      sx={{
+        height: "100%",
+        width: "100%",
+        overflowY: "scroll",
+        alignItems: "center",
+      }}
+    >
+      <Stack spacing={2}>
+        <Item>
+          <SearchAppBar />
+        </Item>
+        <Item>
+          <Resume />
+        </Item>
+        <div className="App">
+          <header className="App-header">
+            <h1>Hello Beyond MD!</h1>
+            {!token ? (
+              <a
+                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+              >
+                Login to Spotify
+              </a>
+            ) : (
+              <IconButton
+                sx={{
+                  color: "white",
+                  border: "black",
+                  outline: "5px",
+                  outlineColor: "red",
+                }}
+                onClick={logout}
+              >
+                Logout
+              </IconButton>
+            )}
 
-              {token ? (
-                <form onSubmit={searchArtists}>
-                  <input
-                    type="text"
-                    onChange={(e) => setSearchKey(e.target.value)}
-                  />
-                  <Button variant="outlined" size="small" type={"submit"}>
-                    Search
-                  </Button>
-                </form>
-              ) : (
-                <h2>Please login</h2>
-              )}
+            {token ? (
+              <form onSubmit={searchArtists}>
+                <input
+                  type="text"
+                  onChange={(e) => setSearchKey(e.target.value)}
+                />
+                <Button variant="outlined" size="small" type={"submit"}>
+                  Search
+                </Button>
+              </form>
+            ) : (
+              <h2>Please login</h2>
+            )}
+            <Box
+              sx={{
+                marginTop: 3,
+                width: 500,
+                height: 400,
+                overflowY: "scroll",
+                alignItems: "center",
+              }}
+            >
               <ImageList
-                variant="masonry"
+                variant="woven"
                 cols={3}
                 gap={8}
-                sx={{ width: 800, height: 600 }}
+                sx={{ width: 500, height: 450 }}
                 rowHeight={300}
+                textAlign="center"
+                position="below"
+                alignItems="center"
               >
                 {renderArtists()}
               </ImageList>
-            </header>
-          </div>
-        </Stack>
-      </Box>
-    </div>
+            </Box>
+          </header>
+        </div>
+      </Stack>
+    </Box>
   );
 }
 

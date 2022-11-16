@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import SearchAppBar from "./compononents/AppBar";
 import Resume from "./compononents/Resume";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -11,6 +10,8 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import ImageList from "@mui/material/ImageList";
 import { IconButton } from "@mui/material";
+
+// import AppBar from "./compononents/AppBar";
 
 function App() {
   const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
@@ -82,24 +83,26 @@ function App() {
   }));
 
   return (
-    <Box
-      sx={{
-        height: "100%",
-        width: "100%",
-        overflowY: "scroll",
-        alignItems: "center",
-      }}
-    >
-      <Stack spacing={2}>
-        <Item>
-          <SearchAppBar />
-        </Item>
-        <Item>
-          <Resume />
-        </Item>
-        <div className="App">
-          <header className="App-header">
-            <h1>Hello Beyond MD!</h1>
+    <div className="App">
+      <header className="App-header">
+        <h1>Hello Beyond MD!</h1>
+        <Box
+          sx={{
+            height: "100%",
+            width: "100%",
+            overflowY: "scroll",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
+          <Stack spacing={2}>
+            {/* <Item>
+          <AppBar />s
+        </Item> */}
+            <Item>
+              <Resume />
+            </Item>
+
             {!token ? (
               <a
                 href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
@@ -124,6 +127,7 @@ function App() {
               <form onSubmit={searchArtists}>
                 <input
                   type="text"
+                  defaultValue={"Artist name here"}
                   onChange={(e) => setSearchKey(e.target.value)}
                 />
                 <Button variant="outlined" size="small" type={"submit"}>
@@ -136,29 +140,32 @@ function App() {
             <Box
               sx={{
                 marginTop: 3,
-                width: 500,
-                height: 400,
-                overflowY: "scroll",
+                width: 900,
+                height: 1000,
                 alignItems: "center",
+                alignContent: "center",
+                justifyContent: "center",
               }}
             >
               <ImageList
                 variant="woven"
-                cols={3}
+                cols={4}
                 gap={8}
-                sx={{ width: 500, height: 450 }}
+                sx={{ width: 800, height: 950 }}
                 rowHeight={300}
+                marginleft="3"
                 textAlign="center"
                 position="below"
                 alignItems="center"
+                alignContent="center"
               >
                 {renderArtists()}
               </ImageList>
             </Box>
-          </header>
-        </div>
-      </Stack>
-    </Box>
+          </Stack>
+        </Box>
+      </header>
+    </div>
   );
 }
 

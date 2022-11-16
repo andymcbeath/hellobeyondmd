@@ -1,5 +1,8 @@
 .body {
   height: 100%;
+  align-content: center;
+  align-items: center;
+  text-align: center;
 }
 .App {
   text-align: center;
@@ -20,3 +23,4 @@
 .App-link {
   color: black;
 }
+

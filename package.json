@@ -6,8 +6,9 @@
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.9",
-    "@mui/material": "^5.10.13",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/material": "^5.10.14",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -15,7 +16,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-pdf": "^6.0.3",
+    "react-router": "^6.4.3",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-spotify-web-playback": "^0.10.0",
+    "styled-components": "^5.3.6",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

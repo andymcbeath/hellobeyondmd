@@ -4,13 +4,11 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import Resume from "./components/Resume";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import ImageList from "@mui/material/ImageList";
-import { IconButton, TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import "./Styles/App.css";
-import { fontFamily, Stack } from "@mui/system";
-import { alignProperty } from "@mui/material/styles/cssUtils";
+import Stack from "@mui/system/Stack";
 
 function App() {
   const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;

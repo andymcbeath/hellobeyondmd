@@ -115,23 +115,32 @@ function App() {
           <h2>Please login</h2>
         </div>
       )}
-      <Paper>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          "& > :not(style)": {
+            m: 1,
+            width: "100%",
+            height: "100%",
+            position: "center",
+          },
+        }}
+      >
         <ImageList
           variant="woven"
           cols={4}
           gap={8}
-          sx={{ width: 800, height: 1000 }}
+          sx={{ width: 500, height: 450 }}
           rowHeight={300}
-          marginleft="3"
           textAlign="center"
-          position="below"
           alignItems="center"
           alignContent="center"
           alignProperty="center"
         >
           {renderArtists()}
         </ImageList>
-      </Paper>
+      </Box>
     </div>
   );
 }

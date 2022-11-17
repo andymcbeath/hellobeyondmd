@@ -7,6 +7,12 @@
   color: black;
 }
 
+.App {
+  align-content: center;
+  text-align: center;
+  align-items: center;
+}
+
 h1 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif Courier, monospace;
   text-align: center;

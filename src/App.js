@@ -1,28 +1,27 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import Resume from "./compononents/Resume";
+import Resume from "./components/Resume";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import ImageList from "@mui/material/ImageList";
 import { IconButton } from "@mui/material";
+import "./App.scss";
 
 // import AppBar from "./compononents/AppBar";
 
 function App() {
-  const CLIENT_ID = "b3a9f5cec1614bc4958ff8febc440e24";
-  const REDIRECT_URI = "http://localhost:3000";
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  const RESPONSE_TYPE = "token";
+  const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+  const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+  const AUTH_ENDPOINT = process.env.REACT_APP_SPOTIFY_AUTH_ENDPOINT;
+  const TOKEN = "token";
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
-
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
@@ -43,7 +42,7 @@ function App() {
 
   const logout = () => {
     setToken("");
-    window.localStorage.removeItem("token");
+    window.localStorage.removeItem(TOKEN);
   };
 
   const searchArtists = async (e) => {
@@ -75,7 +74,7 @@ function App() {
   };
 
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    backgroundColor: theme.palette.mode === "light" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
@@ -85,7 +84,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hello Beyond MD!</h1>
+        <h1 className="header">Hello Beyond MD!</h1>
         <Box
           sx={{
             height: "100%",
@@ -95,47 +94,44 @@ function App() {
             alignContent: "center",
           }}
         >
-          <Stack spacing={2}>
-            {/* <Item>
-          <AppBar />s
-        </Item> */}
+          <Stack spacing={1}>
             <Item>
               <Resume />
             </Item>
-
-            {!token ? (
-              <a
-                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-              >
-                Login to Spotify
-              </a>
-            ) : (
-              <IconButton
-                sx={{
-                  color: "white",
-                  border: "black",
-                  outline: "5px",
-                  outlineColor: "red",
-                }}
-                onClick={logout}
-              >
-                Logout
-              </IconButton>
-            )}
-
             {token ? (
-              <form onSubmit={searchArtists}>
-                <input
-                  type="text"
-                  defaultValue={"Artist name here"}
-                  onChange={(e) => setSearchKey(e.target.value)}
-                />
-                <Button variant="outlined" size="small" type={"submit"}>
-                  Search
-                </Button>
-              </form>
+              <div className="spotify">
+                <IconButton
+                  sx={{
+                    color: "whitesmoke",
+                    border: "blackh",
+                    outline: "5px",
+                    outlineColor: "red",
+                  }}
+                  onClick={logout}
+                >
+                  Logout
+                </IconButton>
+                <form onSubmit={searchArtists}>
+                  <input
+                    type="text"
+                    fontFamily="'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
+                    defaultValue={"Artist name here"}
+                    onChange={(e) => setSearchKey(e.target.value)}
+                  />
+                  <Button variant="outlined" size="small" type={"submit"}>
+                    Search
+                  </Button>
+                </form>
+              </div>
             ) : (
-              <h2>Please login</h2>
+              <div className="App">
+                <a
+                  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${TOKEN}`}
+                >
+                  Login to Spotify
+                </a>
+                <h2 className="App">Please login</h2>
+              </div>
             )}
             <Box
               sx={{
@@ -145,13 +141,14 @@ function App() {
                 alignItems: "center",
                 alignContent: "center",
                 justifyContent: "center",
+                WebkitAlignContent: "center",
               }}
             >
               <ImageList
                 variant="woven"
                 cols={4}
                 gap={8}
-                sx={{ width: 800, height: 950 }}
+                sx={{ width: 800, height: 1000 }}
                 rowHeight={300}
                 marginleft="3"
                 textAlign="center"

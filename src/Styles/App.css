@@ -4,11 +4,11 @@
   text-align: center;
   background-color: whitesmoke;
   text-decoration: none;
-  color:black
+  color: black;
 }
 
 h1 {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif Courier, monospace;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif Courier, monospace;
   text-align: center;
   color: black;
   background-color: whitesmoke;
@@ -23,18 +23,18 @@ body {
   text-align: center;
   align-items: center;
   align-self: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: black;
   background-color: whitesmoke;
 }
 
-.login { 
+.login {
   font-size: x-large;
   align-content: center;
   text-align: center;
   align-items: center;
   align-self: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: black;
   background-color: whitesmoke;
-}
+}/*# sourceMappingURL=App.css.map */

@@ -4,14 +4,13 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import Resume from "./components/Resume";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import ImageList from "@mui/material/ImageList";
-import { IconButton } from "@mui/material";
-import "./App.scss";
-
-// import AppBar from "./compononents/AppBar";
+import { IconButton, TextField } from "@mui/material";
+import "./Styles/App.css";
+import { fontFamily, Stack } from "@mui/system";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
 function App() {
   const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -73,95 +72,66 @@ function App() {
     ));
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "light" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-
   return (
     <div className="App">
-      <header className="App-header">
-        <h1 className="header">Hello Beyond MD!</h1>
-        <Box
-          sx={{
-            height: "100%",
-            width: "100%",
-            overflowY: "scroll",
-            alignItems: "center",
-            alignContent: "center",
-          }}
-        >
-          <Stack spacing={1}>
-            <Item>
-              <Resume />
-            </Item>
-            {token ? (
-              <div className="spotify">
-                <IconButton
-                  sx={{
-                    color: "whitesmoke",
-                    border: "blackh",
-                    outline: "5px",
-                    outlineColor: "red",
-                  }}
-                  onClick={logout}
-                >
-                  Logout
-                </IconButton>
-                <form onSubmit={searchArtists}>
-                  <input
-                    type="text"
-                    fontFamily="'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
-                    defaultValue={"Artist name here"}
-                    onChange={(e) => setSearchKey(e.target.value)}
-                  />
-                  <Button variant="outlined" size="small" type={"submit"}>
-                    Search
-                  </Button>
-                </form>
-              </div>
-            ) : (
-              <div className="App">
-                <a
-                  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${TOKEN}`}
-                >
-                  Login to Spotify
-                </a>
-                <h2 className="App">Please login</h2>
-              </div>
-            )}
-            <Box
-              sx={{
-                marginTop: 3,
-                width: 900,
-                height: 1000,
-                alignItems: "center",
-                alignContent: "center",
-                justifyContent: "center",
-                WebkitAlignContent: "center",
-              }}
-            >
-              <ImageList
-                variant="woven"
-                cols={4}
-                gap={8}
-                sx={{ width: 800, height: 1000 }}
-                rowHeight={300}
-                marginleft="3"
-                textAlign="center"
-                position="below"
-                alignItems="center"
-                alignContent="center"
+      <h1>Hello Beyond MD!</h1>
+      <Paper>
+        <Resume />
+      </Paper>
+      {token ? (
+        <Paper className="spotify">
+          <form onSubmit={searchArtists}>
+            <TextField
+              id="filled-basic"
+              label="Search Artist"
+              variant="filled"
+              paddingBottom="20px"
+              type="text"
+              fontFamily="'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
+              onChange={(e) => setSearchKey(e.target.value)}
+            />
+            <Stack alignItems={"center"} paddingBottom="20px" paddingTop="20px">
+              <Button
+                variant="outlined"
+                sx={{
+                  fontSize: "large",
+                  fontFamily:
+                    "Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+                }}
+                onClick={logout}
               >
-                {renderArtists()}
-              </ImageList>
-            </Box>
-          </Stack>
-        </Box>
-      </header>
+                Logout
+              </Button>
+            </Stack>
+          </form>
+        </Paper>
+      ) : (
+        <div className="login">
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${TOKEN}`}
+          >
+            Login to Spotify
+          </a>
+          <h2>Please login</h2>
+        </div>
+      )}
+      <Paper>
+        <ImageList
+          variant="woven"
+          cols={4}
+          gap={8}
+          sx={{ width: 800, height: 1000 }}
+          rowHeight={300}
+          marginleft="3"
+          textAlign="center"
+          position="below"
+          alignItems="center"
+          alignContent="center"
+          alignProperty="center"
+        >
+          {renderArtists()}
+        </ImageList>
+      </Paper>
     </div>
   );
 }

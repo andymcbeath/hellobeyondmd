@@ -3,7 +3,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Code Examples](#code-examples)
-
+* [Final Product](#final-product)
 ## General Info
 
 This is the take home app prompt #2 for BeyondMD. I created a React page that displays my resume and images from an artist search through the Spotify API. I used Material UI to style everything, created a basic test, and followed security guidelines by securing the API key in an .env file. I was also able to Dockerize the project which can be found in mcbeath1/app-prod. If you need access to the Spotify Developer account or any other questions or concerns please email me at mcbeath1@gmail.com.
@@ -265,3 +265,6 @@ const Resume = () => {
 
 export default Resume;
 ```
+## Final Product
+![Screenshot 2022-11-18 at 2 25 22 PM](https://user-images.githubusercontent.com/107561577/202796065-4f0ddb7b-f932-41b3-9915-4c2fd7b1c6b2.png)
+

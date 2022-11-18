@@ -5,5 +5,5 @@ test("renders the landing page", () => {
   render(<App />);
 
   expect(screen.getByRole("link")).toHaveTextContent("Login to Spotify");
-  expect(screen.getByRole("heading")).toHaveTextContent(/Hello Beyond MD!/);
+  expect(screen.getByRole("heading")).toHaveTextContent(/Hello BeyondMD!/);
 });

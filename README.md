@@ -6,7 +6,7 @@
 
 ## General Info
 
-This is the take home app prompt #2 for BeyondMD. I created a React page that displays my resume and images from an artist search through the Spotify API. I used Material UI to style everything, created a basic test, and followed security guidelines by securing the API key in a .env file. I was also able to Dockerize the project which can be found in mcbeath1/app-prod. If you need access to the Spotify Developer account or any other questions or concerns please email me at mcbeath1@gmail.com.
+This is the take home app prompt #2 for BeyondMD. I created a React page that displays my resume and images from an artist search through the Spotify API. I used Material UI to style everything, created a basic test, and followed security guidelines by securing the API key in an .env file. I was also able to Dockerize the project which can be found in mcbeath1/app-prod. If you need access to the Spotify Developer account or any other questions or concerns please email me at mcbeath1@gmail.com.
 
 ## Technologies
 Project is created with:

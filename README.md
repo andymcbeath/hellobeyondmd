@@ -268,3 +268,4 @@ export default Resume;
 ## Final Product
 ![Screenshot 2022-11-18 at 2 25 22 PM](https://user-images.githubusercontent.com/107561577/202796065-4f0ddb7b-f932-41b3-9915-4c2fd7b1c6b2.png)
 
+![Screenshot 2022-11-18 at 2 26 53 PM](https://user-images.githubusercontent.com/107561577/202796333-8de5041b-ed7c-431d-964f-7f1365cf8723.png)
